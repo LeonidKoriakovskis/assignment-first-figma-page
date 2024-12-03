@@ -1,0 +1,35 @@
+@import "variables";
+@import "header-section";
+@import "primary-section";
+@import "secondary-section";
+@import "third-section";
+@import "fourth-section";
+@import "fifth-section";
+
+
+
+
+
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+body{
+    font-family: "Montserrat", sans-serif;
+    color: $primaryColor;
+    margin: 0;
+}
+.linear-color-sections {
+    background-image: linear-gradient(
+        to bottom,
+        transparent,
+        white
+    ),
+    linear-gradient(
+        to right,
+        #ffffff,
+        #FFF5E9,
+        #f7f4f2
+    );
+    padding-bottom: 50px;
+}
+

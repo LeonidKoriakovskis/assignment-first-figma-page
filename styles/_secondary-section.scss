@@ -1,0 +1,147 @@
+@mixin container {
+    max-width: 1200px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.secondary-section {
+    display: flex;
+    @include container;
+    gap: 80px;
+    
+    .left-secondary-section {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        .left-secondary-titles {
+            position: relative;
+            overflow: visible;
+            
+            // Add these properties to ensure content stays above background
+            z-index: 1;
+            
+            // Add padding to make background visible around the content
+            padding: 20px;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -800px;
+                right: -50px;
+                height: 100%;
+                background-image: linear-gradient(to bottom, #ffefdd, #FFFBF3, #fdfaf5);
+                background-size: cover;
+                background-position: center;
+                z-index: -1; // Changed from -15 to -1
+            }
+            
+            // Make sure text elements are visible against the background
+            span, h2, p {
+                position: relative;
+                z-index: 2;
+            }
+        }
+        span{
+            text-transform: uppercase;
+            color: $thirdColor;
+            font-size: large;
+        }
+        h2{
+            font-size: 2em;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: $secondaryColor;
+        }
+        p{
+            font-size: smaller;
+            padding-bottom: 20px;
+        }
+        .get-started-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            width: 270px;
+            gap: 90px;
+            border: 0;
+            font-size: medium;
+            color: white;
+            background: linear-gradient(90deg, #647B64, #66AC66);
+            border-radius: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            
+            &::after {
+                content: "→"; 
+                font-size: 1.5em;
+            }
+        }
+    }
+    
+    .right-secondary-section {
+        display: flex;
+        width: 60%;
+        flex-wrap: wrap; 
+        gap: 20px;
+        padding-bottom: 80px;
+        
+        .inner-item {
+            padding: 30px;
+            width: calc(100% / 2 - 20px);
+            h3{
+                text-transform: uppercase;
+            }
+            span {
+                display: inline-block; 
+                
+                &:first-letter {
+                    font-size: 1.2em;
+                    font-variant-ligatures: none; 
+                }
+            }
+            
+            &:nth-child(1) {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 2px 20px 20px rgba(0, 0, 0, 0.08);
+                img{
+                    background-color: $secondaryColor;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+            }
+            &:nth-child(2){
+                img{
+                    background-color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                    width: 38px;
+                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
+                }
+            }
+            &:nth-child(3){
+                 img{
+                    background-color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                    width: 38px;
+                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
+                }
+            }
+            &:nth-child(4){
+                img{
+                    background-color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
+                    
+                }
+            }
+        }
+    }
+}

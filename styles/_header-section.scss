@@ -1,0 +1,79 @@
+@import "variables";
+
+@mixin container {
+    max-width: 1200px;
+    padding-left: 20px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.header-section {
+    @include container;
+    display: flex;
+    justify-content: space-between; // This spreads the items apart
+    align-items: center;
+    width: 100%;
+    padding-top: 25px;
+    text-transform: uppercase;
+
+    .left-header-items {
+        display: flex;
+        align-items: center;
+        gap: 12px; 
+
+        img {
+            display: block; 
+        }
+    }
+
+    .right-header-items {
+        display: flex;
+        align-items: center;
+        gap: 20px; 
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex; 
+            align-items: center;
+            
+            li {
+                a {
+                    display: block;
+                    color: $primaryColor;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    font-size: smaller;
+                    font-weight: 500;
+                    span {
+                        display: inline-block; 
+                        
+                        &:first-letter {
+                            font-size: 1.2em;
+                            font-variant-ligatures: none; 
+                        }
+
+                      
+                        &:not(:last-child) {
+                            margin-right: 5px; 
+                        }
+                    }
+                }
+            }
+        }
+
+        button {
+            padding: 10px 15px;
+            border: 0;
+            background: linear-gradient(90deg, #647B64, #66AC66);
+            color: white;
+            cursor: pointer;
+            border-radius: 4px; 
+            font-weight: 500;
+        }
+    }
+}

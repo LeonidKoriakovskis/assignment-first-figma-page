@@ -1,0 +1,59 @@
+@mixin container {
+    max-width: 1200px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+.fourth-section{
+    @include container;
+    display: flex;
+    align-items: center;
+    padding-bottom: 100px;
+    .fourth-section-left{
+        width: 60%;
+        img{
+            object-fit: contain;
+            width: 350px;
+        }
+    }
+    .fourth-section-right{
+        width: 40%;
+        span{
+            color: $thirdColor;
+            text-transform: uppercase;
+        }
+        h2{
+            text-transform: uppercase;
+            color: $secondaryColor;
+            font-weight: 500;
+        }
+        p{
+            font-size: small;
+        }
+        .get-started-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            width: 270px;
+            gap: 90px;
+            border: 0;
+            font-size: medium;
+            color: white;
+            background: linear-gradient(90deg, #647B64, #66AC66);
+            border-radius: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            
+            &::after {
+                content: "→"; 
+                font-size: 1.5em;
+            }
+        }
+    }
+}
