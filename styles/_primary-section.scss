@@ -16,21 +16,39 @@
     h1 {
         font-weight: 500;
         text-transform: uppercase;
+        position: relative; // Add this for absolute positioning of pseudo-element
+        padding-top: 30px; // Add space for the image above
         
-        &.h1-item {  // Use & to target the class on the h1 itself
+        &.h1-item {
             &::first-letter {
                 font-size: 1.2em;
             }
         }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 5px; // Position at the top of the padding space
+            left: 60%; // Center horizontally
+            transform: translateX(-50%); // Center adjust
+            width: 70px; // Adjust width as needed
+            height: 70px; // Adjust height as needed
+            background-image: url('../images/golden-small-circle.svg'); // Replace with your image path
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 505;
+        }
     }
+    
     
     .get-started-button {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        letter-spacing: 0.1em;
         padding: 20px 15px;
         width: 270px;
-        gap: 90px;
         border: 0;
         font-size: medium;
         color: white;
@@ -39,7 +57,6 @@
         text-transform: uppercase;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
         cursor: pointer;
-        
         &::after {
             content: "→"; 
             font-size: 1.5em;
@@ -49,12 +66,29 @@
         padding-bottom: 10px;
     }
     
-    .left-primary-section{
+    .left-primary-section {
+        position: relative; // Add this for absolute positioning
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 450%;
+        width: 45%; // Fixed the width (assuming this was a typo from 450%)
+        
+        &::before {
+            content: '';
+            position: absolute;
+            left: -190%; // Positions half of the image off-screen
+            top: 90%; // Centers vertically
+            transform: translateY(-50%); // Adjusts vertical centering
+            width: 200px; // Adjust as needed
+            height: 200px; // Adjust as needed
+            background-image: url('../images/silver-circle.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+            z-index: 1; // Controls stacking order
+        }
     }
+    
     .right-primary-section{
         display: flex;
         flex-direction: column;

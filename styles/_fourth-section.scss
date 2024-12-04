@@ -37,10 +37,10 @@
         .get-started-button {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            letter-spacing: 0.1em;
             padding: 20px 15px;
             width: 270px;
-            gap: 90px;
             border: 0;
             font-size: medium;
             color: white;

@@ -10,6 +10,7 @@
 
 .fifth-section{
     @include container;
+    padding-bottom: 120px;
     .fifth-section-upper-items{
         display: flex;
         flex-direction: row;
@@ -45,39 +46,61 @@
         }
  
     }
-    .fifth-section-downward-items{
+    .fifth-section-downward-items {
         display: flex;
-        gap: 40px;
-        .downward-item:nth-child(1){
-
-            width: calc(100% / 3 - 40px);
-            .left-element{
-                width: 40%;
-                img{
-                    object-fit: contain;
-                    width: 100px;
+        gap: 20px;
+        
+        
+        .downward-item {
+            width: 100%;
+            padding: 20px; 
+            background-image: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            p{
+                font-style: italic;
+            }
+            
+            .downward-item-wrapper {
+                display: flex;
+                gap: 20px;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                
+                .left-element {
+                    width: calc(40% - 10px);
+                    flex-shrink: 0;
+                    min-width: 0;
+                    
+                    img {
+                        object-fit: contain;
+                        max-width: 180px;
+                        height: 180px;
+                        display: block;
+                    }
                 }
-            }
-            .right-element{
-                width: 60%;
-               
-            }
-        }
-        .downward-item:nth-child(1){
-
-            width: calc(100% / 3 - 40px);
-            .left-element{
-                width: 40%;
-                img{
-                    object-fit: contain;
-                    width: 100px;
+                
+                .right-element {
+                    width: calc(60% - 10px);
+                    flex-shrink: 0;
+                    min-width: 0;
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .title {
+                        font-weight: 600;
+                        margin-bottom: 2px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .name {
+                        font-size: small;
+                    }
                 }
-            }
-            .right-element{
-                width: 60%;
-               
             }
         }
     }
-
+    
+    
 }
