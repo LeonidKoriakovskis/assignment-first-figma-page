@@ -1,106 +1,197 @@
-@mixin container {
-    max-width: 1200px;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
-
-
-.fifth-section{
+.fifth-section {
     @include container;
-    padding-bottom: 120px;
-    .fifth-section-upper-items{
+    padding-bottom: 60px;
+    overflow: hidden;
+
+    @include tablet {
+        padding-bottom: 90px;
+        overflow: visible;
+    }
+
+    @include desktop {
+        padding-bottom: 120px;
+    }
+
+    .fifth-section-upper-items {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        .upper-items-left{
-            span{
+
+        .upper-items-left {
+            span {
                 color: $thirdColor;
                 font-size: larger;
-                text-transform: uppercase; 
+                text-transform: uppercase;
             }
-            h2{
+
+            h2 {
                 color: $secondaryColor;
                 text-transform: uppercase;
                 font-weight: 500;
                 margin-top: 10px;
             }
         }
-        .upper-items-right{
-            .first-button{
+
+        .upper-items-right {
+            display: none; 
+            @include desktop {
+                display: flex; 
+            }
+
+            .first-button {
                 border: 0;
                 background-color: white;
-                padding: 20px;
+                padding: 5px 25px;
                 margin-right: 10px;
                 cursor: pointer;
             }
-            .second-button{
+
+            .second-button {
                 border: 0;
                 background: linear-gradient(90deg, #647B64, #66AC66);
-                padding: 20px;
+                padding: 5px 25px;
                 border-radius: 50%;
                 cursor: pointer;
             }
         }
- 
     }
+
     .fifth-section-downward-items {
         display: flex;
+        flex-direction: row;
         gap: 20px;
-        
-        
+        position: relative;
+
+        @include tablet {
+            flex-wrap: wrap;
+        }
+
         .downward-item {
-            width: 100%;
-            padding: 20px; 
+            flex-shrink: 0;
             background-image: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
-            border-radius: 8px; 
-            margin-bottom: 20px;
-            p{
-                font-style: italic;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+
+         
+            &:nth-child(1) {
+                width: 85%; 
+                height: fit-content;
             }
-            
+
+            &:nth-child(2) {
+                transform: translateX(0%); 
+                overflow: hidden; 
+            }
+
+            &:nth-child(3) {
+                display: none; 
+            }
+
+            &:nth-child(n+4) {
+                display: none; 
+            }
+
+        
+            @include tablet {
+                &:nth-child(1),
+                &:nth-child(2),
+                &:nth-child(3) {
+                    width: calc(50% - 10px);
+                    transform: none; 
+                    display: block; 
+                  
+                }
+
+                &:nth-child(n+4) {
+                    display: none; 
+                }
+            }
+
+          
+            @include desktop {
+                &:nth-child(1),
+                &:nth-child(2),
+                &:nth-child(3) {
+                    width: calc(33.333% - 14px); 
+                }
+
+                &:nth-child(n+4) {
+                    display: none; 
+                }
+            }
+
+            p {
+                font-style: italic;
+                font-size: 0.9em;
+                margin: 10px 0;
+            }
+
             .downward-item-wrapper {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
                 align-items: flex-start;
                 flex-wrap: wrap;
-                
+                margin: 0; 
+                padding: 0; 
+
+                @include tablet {
+                    gap: 20px;
+                }
+
                 .left-element {
-                    width: calc(40% - 10px);
+                    width: 100px; 
                     flex-shrink: 0;
-                    min-width: 0;
-                    
+
+                    @include tablet {
+                        width: calc(40% - 10px);
+                    }
+
                     img {
                         object-fit: contain;
+                        width: 100%;
+                        height: auto; 
                         max-width: 180px;
-                        height: 180px;
-                        display: block;
+
+                        @include tablet {
+                            height: 180px;
+                        }
                     }
                 }
-                
+
                 .right-element {
-                    width: calc(60% - 10px);
+                    width: calc(100% - 115px);
                     flex-shrink: 0;
                     min-width: 0;
                     display: flex;
                     flex-direction: column;
-                    
+
+                    @include tablet {
+                        width: calc(60% - 10px);
+                    }
+
                     .title {
                         font-weight: 600;
                         margin-bottom: 2px;
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                        font-size: 0.9em; 
+
+                        @include tablet {
+                            font-size: 1em;
+                        }
                     }
+
                     .name {
-                        font-size: small;
+                        font-size: x-small; 
+
+                        @include tablet {
+                            font-size: small;
+                        }
                     }
                 }
             }
         }
     }
-    
-    
 }

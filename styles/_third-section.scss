@@ -1,77 +1,203 @@
 @mixin container {
-    max-width: 1200px;
+    width: 100%;
     padding-left: 40px;
-    padding-right: 40px;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+
+    @include tablet {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @include desktop {
+        max-width: 1200px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
-.third-section{
+
+.third-section {
     @include container;
-    padding-bottom: 80px;
-    .third-section-titles{
+    padding-bottom: 40px;
+    position: relative;
+
+    @include tablet {
+        padding-bottom: 60px;
+    }
+
+    @include desktop {
+        padding-bottom: 80px;
+    }
+
+   
+
+    &::before {
+        content: ''; 
+        position: absolute;
+        top: 76%;
+        left: 15px; 
+        transform: translateY(-50%);
+        width:150px;
+        height: 170px;
+        background-image: radial-gradient(#a7a6a6 1px, transparent 1px); 
+        background-size: 8px 8px;
+        z-index: 0; 
+
+        @include tablet {
+            width: 150px;
+            height: 150px;
+            background-size: 9px 9px;
+        }
+
+        @include inbetween{
+            display: none;
+        }
+
+        @include desktop {
+            display: flex;
+            width: 200px;
+            height: 200px;
+            background-size: 10px 10px;
+            top: 68%;
+            left: 10px;
+        }
+    }
+
+    &::after {
+        content: ''; 
+        position: absolute;
+        bottom: 0;
+        right: -20px;
+        width: 150px;
+        height: 60px;
+        top: 80%;
+        transform: translateY(-50%);
+        opacity: 0.3; 
+        border-radius: 10px; 
+        z-index: 0; 
+
+        @include tablet {
+            right: -35px;
+            width: 200px;
+            height: 70px;
+        }
+        @include desktop {
+            right: -50px;
+            width: 250px;
+            height: 80px;
+            background-image: linear-gradient(to top, #ffcb8f, #FFFBF3, #fdfaf5);
+        }
+    }
+
+    .third-section-titles {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 10px;
-        padding-bottom: 30px;
-        h2{
+        gap: 8px;
+        padding-bottom: 20px;
+        z-index: 1;
+
+        @include tablet {
+            gap: 10px;
+            padding-bottom: 25px;
+        }
+
+        @include desktop {
+            padding-bottom: 30px;
+        }
+
+        h2 {
             font-weight: 500;
             text-transform: uppercase;
             color: $secondaryColor;
             margin: 0;
+            font-size: 1.5em;
+            text-align: center;
+
+            @include tablet {
+                font-size: 1.75em;
+            }
+
+            @include desktop {
+                font-size: 2em;
+            }
         }
-        span{
+
+        span {
             text-transform: uppercase;
             color: $thirdColor;
             font-weight: 500;
-        }
-    }
-    .third-section-boxes{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        .third-section-item:nth-child(1) {
-            width: calc(100% / 3 - 20px);
-            padding: 30px;
-            padding-top: 50px;
-            background-image: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
-            position: relative;
-            overflow: hidden;
-    
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: -150px;
-                width: 100%;
-                height: 200px;
-                background-image: url('../images/dotted-design.svg');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                opacity: 0.5;
-                z-index: -1;
+            font-size: 0.9em;
+
+            @include tablet {
+                font-size: 1em;
             }
         }
-    
-        
-        
-        
-        .third-section-item:nth-child(2){
-            width: calc(100% / 3 - 20px );
-            background-color: $secondaryColor;
-            padding: 30px;
-            padding-top: 50px;
-            border-radius: 5px;
-            color: white;
+    }
+
+    .third-section-boxes {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        width: 100%;
+
+        @include tablet {
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .third-section-item:nth-child(3){
-            width: calc(100% / 3 - 20px);
-            padding: 30px;
-            padding-top: 50px;
-            background-image: linear-gradient(to bottom, #FFFFFF, hsla(0, 0%, 97%, 0.87));
+
+        .third-section-item {
+            &:nth-child(1),
+            &:nth-child(2) {
+                width: 50%; 
+                padding: 20px;
+                padding-top: 30px;
+
+                @include tablet {
+                    width: calc(50% - 10px);
+                    padding: 25px;
+                    padding-top: 40px;
+                }
+
+                @include desktop {
+                    width: calc(100% / 3 - 20px);
+                    padding: 30px;
+                    padding-top: 50px;
+                }
+            }
+
+            &:nth-child(3) {
+                display: none; 
+
+                @include tablet {
+                    display: block;
+                    width: 100%;
+                    padding: 25px;
+                    padding-top: 40px;
+                }
+
+                @include desktop {
+                    width: calc(100% / 3 - 20px);
+                    padding: 30px;
+                    padding-top: 50px;
+                }
+            }
+
+            &:nth-child(1) {
+                background-image: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
+                position: relative;
+            }
+
+            &:nth-child(2) {
+                background-color: $secondaryColor;
+                border-radius: 5px;
+                color: white;
+            }
+
+            &:nth-child(3) {
+                background-image: linear-gradient(to bottom, #FFFFFF, hsla(0, 0%, 97%, 0.87));
+            }
         }
     }
 }

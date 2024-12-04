@@ -1,33 +1,49 @@
 @mixin container {
-    max-width: 1200px;
-    padding-left: 40px;
-    padding-right: 40px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+
+    @include desktop {
+        max-width: 1200px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
 
 .footer-section {
     background-color: $footerColor;
-    
-    .footer-section-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    .footer-section-wrapper{
         display: flex;
-        gap: 80px;
-        padding: 80px;
+        flex-wrap: wrap;
+        gap: 40px;
+        padding: 40px;
         @include container;
+
+        @include desktop {
+            flex-wrap: nowrap;
+            gap: 80px;
+            padding: 80px;
+        }
         
         .footer-section-item:nth-child(1) {
             display: flex;
             flex-direction: column;
-            width: 25%;
+            width: 100%;
             font-size: small;
+            
+            @include desktop {
+                width: 20%;
+            }
             
             .awesome-ui-logos {
                 display: flex;
                 justify-content: start;
                 align-items: center;
                 gap: 10px;
-                margin-bottom: 20px;
                 
                 .au-logo {
                     object-fit: contain;
@@ -49,31 +65,29 @@
             .all-rights-reserved {
                 margin-bottom: 20px;
             }
-            
-            .social-logos {
+            .social-logos{
                 display: flex;
-                gap: 15px;
-                
-                img {
+                gap: 20px;
+                cursor: pointer;
+                img{
                     object-fit: contain;
                     background-color: #E2D2BC;
-                    padding: 8px;
+                    padding: 5px;
                     border-radius: 50%;
-                    width: 32px;
-                    height: 30px;
-                    cursor: pointer;
-                    
-    
                 }
             }
         }
-        
+    
         .footer-section-item:nth-child(2),
         .footer-section-item:nth-child(3) {
-            width: 20%;
+            width: calc(50% - 20px);
             display: flex;
             flex-direction: column;
             gap: 15px;
+            
+            @include desktop {
+                width: 20%;
+            }
             
             span {
                 color: $secondaryColor;
@@ -97,12 +111,16 @@
                 }
             }
         }
-        
+    
         .footer-section-item:nth-child(4) {
-            width: 35%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 15px;
+            
+            @include desktop {
+                width: 40%;
+            }
             
             span {
                 color: $secondaryColor;
@@ -110,19 +128,22 @@
                 font-size: large;
                 text-transform: uppercase;
             }
-            
-            input {
-                padding: 10px 20px 70px 20px;
+            input{
+                padding-bottom: 70px;
                 border: 0;
+                padding-left: 20px;
+                padding-top: 10px;
+                width: 100%;
+                box-sizing: border-box;
                 border-radius: 3px;
             }
-            
-            button {
+            button{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 14px 10px;
                 border: 0;
+                font-size: medium;
                 color: white;
                 background: linear-gradient(90deg, #647B64, #66AC66);
                 border-radius: 3px;
@@ -130,15 +151,14 @@
                 box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
                 cursor: pointer;
                 font-size: 0.8em;
-                
-
+                width: 100%;
+                box-sizing: border-box;
                 
                 &::after {
-                    content: "→";
+                    content: "→"; 
                     font-size: 1.4em;
                 }
             }
         }
     }
 }
-

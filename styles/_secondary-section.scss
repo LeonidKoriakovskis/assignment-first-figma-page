@@ -1,147 +1,277 @@
-@mixin container {
-    max-width: 1200px;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
+@mixin mobile {
+    @media (min-width: 330px) { @content; }
+  }
 
-.secondary-section {
-    display: flex;
-    @include container;
-    gap: 80px;
-    
-    .left-secondary-section {
-        display: flex;
-        flex-direction: column;
-        width: 40%;
-        .left-secondary-titles {
-            position: relative;
-            overflow: visible;
-            
-            // Add these properties to ensure content stays above background
-            z-index: 1;
-            
-            // Add padding to make background visible around the content
-            padding: 20px;
-            
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -800px;
-                right: -50px;
-                height: 100%;
-                background-image: linear-gradient(to bottom, #ffefdd, #FFFBF3, #fdfaf5);
-                background-size: cover;
-                background-position: center;
-                z-index: -1; // Changed from -15 to -1
-            }
-            
-            // Make sure text elements are visible against the background
-            span, h2, p {
-                position: relative;
-                z-index: 2;
-            }
-        }
-        span{
-            text-transform: uppercase;
-            color: $thirdColor;
-            font-size: large;
-        }
-        h2{
-            font-size: 2em;
-            font-weight: 500;
-            text-transform: uppercase;
-            color: $secondaryColor;
-        }
-        p{
-            font-size: smaller;
-            padding-bottom: 20px;
-        }
-        .get-started-button {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            letter-spacing: 0.1em;
-            padding: 20px 15px;
-            width: 270px;
-            border: 0;
-            font-size: medium;
-            color: white;
-            background: linear-gradient(90deg, #647B64, #66AC66);
-            border-radius: 3px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            
-            &::after {
-                content: "→"; 
-                font-size: 1.5em;
-            }
-        }
-    }
-    
-    .right-secondary-section {
-        display: flex;
-        width: 60%;
-        flex-wrap: wrap; 
-        gap: 20px;
-        padding-bottom: 80px;
-        
-        .inner-item {
-            padding: 30px;
-            width: calc(100% / 2 - 20px);
-            h3{
-                text-transform: uppercase;
-            }
-            span {
-                display: inline-block; 
-                
-                &:first-letter {
-                    font-size: 1.2em;
-                    font-variant-ligatures: none; 
-                }
-            }
-            
-            &:nth-child(1) {
-                background-color: white;
-                border-radius: 5px;
-                box-shadow: 2px 20px 20px rgba(0, 0, 0, 0.08);
-                img{
-                    background-color: $secondaryColor;
-                    padding: 5px;
-                    border-radius: 5px;
-                }
-            }
-            &:nth-child(2){
-                img{
-                    background-color: white;
-                    padding: 5px;
-                    border-radius: 5px;
-                    width: 38px;
-                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
-                }
-            }
-            &:nth-child(3){
-                 img{
-                    background-color: white;
-                    padding: 5px;
-                    border-radius: 5px;
-                    width: 38px;
-                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
-                }
-            }
-            &:nth-child(4){
-                img{
-                    background-color: white;
-                    padding: 5px;
-                    border-radius: 5px;
-                    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
-                    
-                }
-            }
-        }
-    }
-}
+  @mixin inbetween{
+    @media (min-width: 570px) { @content; }
+  }
+  
+  @mixin tablet {
+    @media (min-width: 768px) { @content; }
+  }
+  
+  @mixin desktop {
+    @media (min-width: 992px) { @content; }
+  }
+  
+  @mixin container {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-left: auto;
+      margin-right: auto;
+
+  
+      @include tablet {
+          padding-left: 30px;
+          padding-right: 30px;
+      }
+
+  
+      @include desktop {
+          max-width: 1200px;
+          padding-left: 40px;
+          padding-right: 40px;
+      }
+  }
+  
+  .secondary-section {
+      display: flex;
+      flex-direction: column;
+      @include container;
+      gap: 40px;
+  
+      @include tablet {
+          gap: 60px;
+      }
+  
+      @include desktop {
+          flex-direction: row;
+          gap: 80px;
+      }
+      
+      .left-secondary-section {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+  
+          @include desktop {
+              width: 40%;
+          }
+  
+          .left-secondary-titles {
+              position: relative;
+              overflow: visible;
+              z-index: 1;
+              padding: 15px;
+  
+              @include tablet {
+                  padding: 20px;
+              }
+              
+              &::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: -50px;
+                  right: 20px;
+                  height: 100%;
+                  background-image: linear-gradient(to bottom, #ffefdd, #FFFBF3, #fdfaf5);
+                  background-size: cover;
+                  background-position: center;
+                  z-index: -1;
+  
+                  @include tablet {
+                    left: -500px;
+                    right:  400px;
+                  }
+
+                  @include inbetween{
+                    left: -500px;
+                    right:  400px;
+                  }
+  
+                  @include desktop {
+                      left: -800px;
+                      right: -50px;
+                  }
+              }
+              
+              span, h2, p {
+                  position: relative;
+                  z-index: 2;
+              }
+          }
+  
+          span {
+              text-transform: uppercase;
+              color: $thirdColor;
+              font-size: medium;
+  
+              @include tablet {
+                  font-size: large;
+              }
+          }
+  
+          h2 {
+              font-size: 1.5em;
+              font-weight: 500;
+              text-transform: uppercase;
+              color: $secondaryColor;
+  
+              @include tablet {
+                  font-size: 1.75em;
+              }
+  
+              @include desktop {
+                  font-size: 2em;
+              }
+          }
+  
+          p {
+              font-size: smaller;
+              padding-bottom: 15px;
+  
+              @include tablet {
+                  padding-bottom: 20px;
+              }
+          }
+  
+          .get-started-button {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              letter-spacing: 0.1em;
+              padding: 15px 12px;
+              width: 100%;
+              max-width: 270px;
+              border: 0;
+              font-size: small;
+              color: white;
+              background: linear-gradient(90deg, #647B64, #66AC66);
+              border-radius: 3px;
+              text-transform: uppercase;
+              box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+              cursor: pointer;
+  
+              @include tablet {
+                  padding: 20px 15px;
+                  font-size: medium;
+              }
+              
+              &::after {
+                  content: "→"; 
+                  font-size: 1.5em;
+              }
+          }
+      }
+      
+      .right-secondary-section {
+          display: flex;
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 10px; 
+          padding-bottom: 40px;
+  
+          @include tablet {
+              gap: 15px;
+              padding-bottom: 60px;
+          }
+  
+          @include desktop {
+              width: 60%;
+              gap: 20px;
+              padding-bottom: 80px;
+          }
+          
+          .inner-item {
+              padding: 15px; 
+              width: calc(50% - 5px); 
+              font-size: 0.8em; 
+  
+              @include tablet {
+                  padding: 20px;
+                  width: calc(50% - 7.5px);
+                  font-size: 0.9em;
+              }
+  
+              @include desktop {
+                  padding: 30px;
+                  width: calc(50% - 10px);
+                  font-size: 1em;
+              }
+  
+              h3 {
+                  text-transform: uppercase;
+                  font-size: 0.9em;
+                  margin-bottom: 5px; 
+  
+                  @include tablet {
+                      font-size: 1em;
+                      margin-bottom: 8px;
+                  }
+              }
+  
+              span {
+                  display: inline-block;
+                  
+                  &:first-letter {
+                      font-size: 1.2em;
+                      font-variant-ligatures: none;
+                  }
+              }
+              
+              &:nth-child(1) {
+                  background-color: white;
+                  border-radius: 5px;
+                  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.08);
+  
+                  @include tablet {
+                      box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.08);
+                  }
+  
+                  @include desktop {
+                      box-shadow: 2px 20px 20px rgba(0, 0, 0, 0.08);
+                  }
+  
+                  img {
+                      background-color: $secondaryColor;
+                      padding: 5px;
+                      border-radius: 5px;
+                      width: 24px; 
+  
+                      @include tablet {
+                          width: 32px;
+                      }
+  
+                      @include desktop {
+                          width: 38px;
+                      }
+                  }
+              }
+  
+              &:nth-child(2),
+              &:nth-child(3),
+              &:nth-child(4) {
+                  img {
+                      background-color: white;
+                      padding: 5px;
+                      border-radius: 5px;
+                      width: 24px; 
+                      box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.05);
+  
+                      @include tablet {
+                          width: 32px;
+                          box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.05);
+                      }
+  
+                      @include desktop {
+                          width: 38px;
+                          box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.05);
+                      }
+                  }
+              }
+          }
+      }
+  }
+  

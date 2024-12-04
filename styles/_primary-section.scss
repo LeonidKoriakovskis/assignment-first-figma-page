@@ -1,101 +1,213 @@
-@mixin container {
-    max-width: 1100px;
-    padding-left: 80px;
-    padding-right: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
-
-.primary-section{
-    padding-top: 30px;
-    padding-bottom: 100px;
-    @include container;
-    display: flex;
-    gap: 200px;
-    h1 {
-        font-weight: 500;
-        text-transform: uppercase;
-        position: relative; // Add this for absolute positioning of pseudo-element
-        padding-top: 30px; // Add space for the image above
-        
-        &.h1-item {
-            &::first-letter {
-                font-size: 1.2em;
-            }
-        }
-        
-        &::before {
-            content: '';
-            position: absolute;
-            top: 5px; // Position at the top of the padding space
-            left: 60%; // Center horizontally
-            transform: translateX(-50%); // Center adjust
-            width: 70px; // Adjust width as needed
-            height: 70px; // Adjust height as needed
-            background-image: url('../images/golden-small-circle.svg'); // Replace with your image path
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border-radius: 505;
-        }
-    }
-    
-    
-    .get-started-button {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        letter-spacing: 0.1em;
-        padding: 20px 15px;
-        width: 270px;
-        border: 0;
-        font-size: medium;
-        color: white;
-        background: linear-gradient(90deg, #647B64, #66AC66);
-        border-radius: 3px;
-        text-transform: uppercase;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        &::after {
-            content: "→"; 
-            font-size: 1.5em;
-        }
-    }
-    p{
-        padding-bottom: 10px;
-    }
-    
-    .left-primary-section {
-        position: relative; // Add this for absolute positioning
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 45%; // Fixed the width (assuming this was a typo from 450%)
-        
-        &::before {
-            content: '';
-            position: absolute;
-            left: -190%; // Positions half of the image off-screen
-            top: 90%; // Centers vertically
-            transform: translateY(-50%); // Adjusts vertical centering
-            width: 200px; // Adjust as needed
-            height: 200px; // Adjust as needed
-            background-image: url('../images/silver-circle.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: right center;
-            z-index: 1; // Controls stacking order
-        }
-    }
-    
-    .right-primary-section{
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        img{
-            object-fit: contain;
-            width: 300px;
-        }
-    }
-}
+@mixin mobile {
+    @media (min-width: 480px) { @content; }
+  }
+  
+  @mixin tablet {
+    @media (min-width: 768px) { @content; }
+  }
+  
+  @mixin desktop {
+    @media (min-width: 992px) { @content; }
+  }
+  
+  @mixin container {
+      width: 100%;
+      padding-left: 20px;
+      margin-left: auto;
+      margin-right: auto;
+  
+      @include tablet {
+          padding-left: 40px;
+          padding-right: 40px;
+      }
+  
+      @include desktop {
+          max-width: 1100px;
+          padding-left: 80px;
+          padding-right: 80px;
+      }
+      @include mobile{
+        padding-right: 0;
+      }
+  }
+  
+  .primary-section {
+      padding-top: 20px;
+      padding-bottom: 50px;
+      @include container;
+      display: flex;
+      flex-direction: row; 
+      gap: 20px; 
+  
+      @include tablet {
+          padding-top: 25px;
+          padding-bottom: 75px;
+          gap: 100px;
+      }
+  
+      @include desktop {
+          padding-top: 30px;
+          padding-bottom: 100px;
+          gap: 200px;
+      }
+  
+      h1 {
+          font-weight: 500;
+          text-transform: uppercase;
+          position: relative;
+          padding-top: 20px;
+          font-size: 1.5em;
+          text-align: left;
+  
+          @include tablet {
+              padding-top: 25px;
+              font-size: 1.75em;
+          }
+  
+          @include desktop {
+              padding-top: 30px;
+              font-size: 2em;
+          }
+          
+          &.h1-item {
+              &::first-letter {
+                  font-size: 1.2em;
+              }
+          }
+          
+          &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 60%;
+              transform: translateX(-50%);
+              width: 50px;
+              height: 50px;
+              background-image: url('../images/golden-small-circle.svg');
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+              border-radius: 505;
+  
+              @include tablet {
+                  width: 60px;
+                  height: 60px;
+              }
+  
+              @include desktop {
+                  width: 70px;
+                  height: 70px;
+                  top: 5px;
+              }
+          }
+      }
+      
+      .get-started-button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          letter-spacing: 0.1em;
+          padding: 15px 12px;
+          width: 100%;
+          max-width: 270px;
+          border: 0;
+          font-size: small;
+          color: white;
+          background: linear-gradient(90deg, #647B64, #66AC66);
+          border-radius: 3px;
+          text-transform: uppercase;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+  
+          @include tablet {
+              padding: 18px 15px;
+              font-size: medium;
+          }
+  
+          @include desktop {
+              padding: 20px 15px;
+          }
+  
+          &::after {
+              content: "→";
+              font-size: 1.5em;
+          }
+      }
+  
+      p {
+          padding-bottom: 10px;
+      }
+      
+      .left-primary-section {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 60%; 
+  
+          @include tablet {
+              width: 50%;
+          }
+  
+          @include desktop {
+              width: 45%;
+          }
+          
+          &::before {
+              display: none;
+  
+              @include desktop {
+                  display: block;
+                  content: '';
+                  position: absolute;
+                  left: -190%;
+                  top: 90%;
+                  transform: translateY(-50%);
+                  width: 200px;
+                  height: 200px;
+                  background-image: url('../images/silver-circle.svg');
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  background-position: right center;
+                  z-index: 2;
+              }
+          }
+      }
+      
+      .right-primary-section {
+          position: relative;
+          width: 40%; 
+          overflow: hidden; 
+          display: flex;
+          justify-content: flex-end; 
+  
+          @include tablet {
+              width: 50%;
+          }
+  
+          @include desktop {
+              width: 60%;
+          }
+  
+          img {
+              position: relative;
+              object-fit: cover;
+              width: 400px; 
+              max-width: none;
+              height: 100%;
+              transform: translateX(50%); 
+  
+              @include tablet {
+                  width: 500px;
+                  transform: translateX(0); 
+              }
+  
+              @include desktop {
+                  width: 300px;
+                  object-fit: contain;
+                  transform: none;
+              }
+          }
+      }
+  }
+  
